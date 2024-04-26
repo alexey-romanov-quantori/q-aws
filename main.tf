@@ -48,9 +48,9 @@ resource "aws_instance" "alexey_romanov_server" {
   }
 
   associate_public_ip_address = true
-  subnet_id = var.subnet_id
-  security_groups = [aws_security_group.allow_ssh_http.id]
-  iam_instance_profile = "${aws_iam_instance_profile.s3_access_profile.name}"
+  subnet_id                   = var.subnet_id
+  security_groups             = [aws_security_group.allow_ssh_http.id]
+  iam_instance_profile        = aws_iam_instance_profile.s3_access_profile.name
 }
 
 # - Create a security group to allow traffic from your IP address to port 22 and allow traffic from the internet
@@ -110,7 +110,7 @@ resource "aws_iam_role_policy" "s3_access_policy" {
         Action = [
           "s3:*"
         ]
-        Effect   = "Allow"
+        Effect = "Allow"
         Resource = [
           "arn:aws:s3:::${aws_s3_bucket.app_s3_bucket.bucket}",
           "arn:aws:s3:::${aws_s3_bucket.app_s3_bucket.bucket}/*"
@@ -141,5 +141,5 @@ resource "aws_iam_role" "s3_access_role" {
 
 resource "aws_iam_instance_profile" "s3_access_profile" {
   name = "alexey-romanov-tf-iam-instance-profile"
-  role = "${aws_iam_role.s3_access_role.name}"
+  role = aws_iam_role.s3_access_role.name
 }
