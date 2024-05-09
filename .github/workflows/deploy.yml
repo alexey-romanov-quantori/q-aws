@@ -1,0 +1,39 @@
+name: Python application
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v4
+
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v4
+      with:
+        aws-region: us-east-1
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+    - name: Terraform fmt
+      uses: dflook/terraform-fmt-check@v1
+
+    - name: Terraform validate
+      uses: dflook/terraform-validate@v1
+
+    - name: Terraform plan
+      uses: dflook/terraform-plan@v1
+
+    - name: Terraform Apply
+      uses: dflook/terraform-apply@v1.29.1
+      with:
+        auto_approve: true
