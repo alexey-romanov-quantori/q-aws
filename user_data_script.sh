@@ -15,4 +15,6 @@ sudo apt-get update
 
 sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 
+git clone git@github.com:alexey-romanov-quantori/q-aws.git
+cd ./q-aws/app || exit
 docker-compose -f docker-compose.base.yml -f docker-compose.local.yml up --build
