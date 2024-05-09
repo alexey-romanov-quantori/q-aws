@@ -26,8 +26,7 @@ jobs:
 
     - name: terraform fmt
       uses: dflook/terraform-fmt-check@v1
-      with:
-        path: my-terraform-config
+
     - name: terraform validate
       uses: dflook/terraform-validate@v1
 
