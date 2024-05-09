@@ -33,10 +33,6 @@ services:
     volumes:
       - ./server:/app
       - django_volume:/django_volume
-    depends_on:
-      - postgres_db
-      - redis
-      - django
 
 volumes:
   django_volume:

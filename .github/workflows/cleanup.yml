@@ -1,4 +1,4 @@
-name: Clean up
+name: Terraform clean up
 
 on:
   workflow_dispatch:
