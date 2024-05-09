@@ -21,7 +21,7 @@ services:
       - ./server:/app
       - django_volume:/django_volume
     env_file:
-      - ../.env
+      - .env
     ports:
       - '8000:8000'
       - '80:80'
@@ -29,7 +29,7 @@ services:
   celery:
     command:  celery -A devops_py worker -l DEBUG
     env_file:
-      - ../.env
+      - .env
     volumes:
       - ./server:/app
       - django_volume:/django_volume
