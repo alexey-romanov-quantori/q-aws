@@ -51,6 +51,7 @@ resource "aws_instance" "alexey_romanov_server" {
   subnet_id                   = var.subnet_id
   security_groups             = [aws_security_group.allow_ssh_http.id]
   iam_instance_profile        = aws_iam_instance_profile.s3_access_profile.name
+  user_data = file("${path.module}/user_data_script.sh")
 }
 
 # - Create a security group to allow traffic from your IP address to port 22 and allow traffic from the internet
