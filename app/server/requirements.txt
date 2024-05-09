@@ -1,0 +1,4 @@
+django==4.1.7
+psycopg2==2.9.5
+redis==4.4.0
+celery==5.2.7

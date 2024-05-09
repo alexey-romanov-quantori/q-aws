@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+
+  redis:
+    image: redis:7.0.7-alpine
+    container_name: redis_container
+
+  postgres_db:
+    image: postgres:13.9
+
+  django:
+    image: django-devops-py:latest
+    build: ./server
+    container_name: django_app_container
+    depends_on:
+      - postgres_db
+
+  celery:
+    image: sirna-celery:latest
+    build: ./server
+    container_name: celery_app_container
